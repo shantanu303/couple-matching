@@ -1,66 +1,61 @@
-function getRashi(firstCharacter) {
-    switch (firstCharacter.toLowerCase()) {
-        case "a":
-        case "l":
-        case "i":
-        case "o":
-        case "u":
-            return "mesha";
-        case "b":
-        case "v":
-        case "u":
-        case "w":
-        case "e":
-            return "vrishabha";
-        case "k":
-        case "chh":
-        case "gh":
-        case "q":
-        case "c":
-            return "mithun";
-        case "dd":
-        case "h":
-            return "karka";
-        case "m":
-        case "tt":
-            return "simha";
-        case "p":
-        case "tthh":
-            return "kanya";
-        case "r":
-        case "t":
-            return "tula";
-        case "n":
-        case "y":
-            return "vruschika";
-        case "bh":
-        case "f":
-        case "dh":
-            return "dhanu";
-        case "kh":
-        case "j":
-            return "makar";
-        case "g":
-        case "s":
-        case "sh":
-            return "khumbha";
-        case "d":
-        case "ch":
-        case "z":
-        case "th":
-            return "meena";
-        default:
-            return "not matching";
+// Create table data
+const boysRashi = [ "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"];
+
+const girlsRashi = [ "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"];
+
+const tableData = [
+    [null, "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"],
+    // ['Girls RashiA', 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
+    // ['Girls RashiB', 25, 30, 35, 10, 15, 20, 10, 15, 20, 10, 15, 20],
+    // ['Girls RashiC', 40, 45, 50, 10, 15, 20, 10, 15, 20, 10, 15, 20],
+
+    ["Mesha", 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
+    ['Vrishabha', 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ["Mithun", 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+    ["Karka", 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    ["Simha", 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
+    ["Kanya", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ["Tula", 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+    ["Vruschika", 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    ["Dhanu", 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
+    ["Makar", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ["Kumbha", 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+    ["Meena", 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+];
+
+// Create table element
+const table = document.createElement('table');
+
+// Add rows and cells to the table
+for (let i = 0; i < girlsRashi.length + 1; i++) {
+    const row = table.insertRow(i);
+    for (let j = 0; j < boysRashi.length + 1; j++) {
+        const cell = row.insertCell(j);
+        if (i === 0 && j > 0) {
+            cell.textContent = boysRashi[j - 1];
+        } else if (i > 0 && j === 0) {
+            cell.textContent = girlsRashi[i - 1];
+        } else if (i > 0 && j > 0) {
+            cell.textContent = tableData[i][j];
+        }
     }
 }
-function submit() {
-    var boyName = document.getElementById("bname").value;
-    var girlName = document.getElementById("gname").value;
 
-    var bfirstCharacter = boyName.charAt(0);
-    var gfirstCharacter = girlName.charAt(0);
+// Add table to the body
+document.body.appendChild(table);
 
-    console.log("Boy's Rashi:", getRashi(bfirstCharacter));
-    console.log("Girl's Rashi:", getRashi(gfirstCharacter));
-    
+// Function to display value on button click
+function displayValue() {
+    const girlsRashiInput = document.getElementById('girlsRashiInput').value;
+    const boysRashiInput = document.getElementById('boysRashiInput').value;
+
+    const rowIndex = girlsRashi ? girlsRashi.indexOf(girlsRashiInput) + 1 : 0;
+    const columnIndex = boysRashi ? boysRashi.indexOf(boysRashiInput) + 1 : 0;
+
+    if (rowIndex > 0 && columnIndex > 0) {
+        const cellValue = table.rows[rowIndex].cells[columnIndex].textContent;
+        document.getElementById('displayedValue').textContent = `Selected value: ${cellValue}`;
+    } else {
+        document.getElementById('displayedValue').textContent = "Invalid input. Please enter valid Rashi values.";
+    }
 }

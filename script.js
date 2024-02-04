@@ -1,13 +1,10 @@
-// Create table data
 const boysRashi = [ "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"];
 
 const girlsRashi = [ "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"];
 
 const tableData = [
     [null, "Mesha", "Vrishabha", " Mithun", "Karka", "Simha", "Kanya", "Tula", "Vruschika", "Dhanu", "Makar", "Kumbha", "Meena"],
-    // ['Girls RashiA', 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
-    // ['Girls RashiB', 25, 30, 35, 10, 15, 20, 10, 15, 20, 10, 15, 20],
-    // ['Girls RashiC', 40, 45, 50, 10, 15, 20, 10, 15, 20, 10, 15, 20],
+
 
     ["Mesha", 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1],
     ['Vrishabha', 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -23,39 +20,37 @@ const tableData = [
     ["Meena", 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
 ];
 
-// Create table element
-const table = document.createElement('table');
+// // Create table element
+// const table = document.createElement('table');
 
-// Add rows and cells to the table
-for (let i = 0; i < girlsRashi.length + 1; i++) {
-    const row = table.insertRow(i);
-    for (let j = 0; j < boysRashi.length + 1; j++) {
-        const cell = row.insertCell(j);
-        if (i === 0 && j > 0) {
-            cell.textContent = boysRashi[j - 1];
-        } else if (i > 0 && j === 0) {
-            cell.textContent = girlsRashi[i - 1];
-        } else if (i > 0 && j > 0) {
-            cell.textContent = tableData[i][j];
-        }
-    }
-}
+// // Add rows and cells to the table
+// for (let i = 0; i < girlsRashi.length + 1; i++) {
+//     const row = table.insertRow(i);
+//     for (let j = 0; j < boysRashi.length + 1; j++) {
+//         const cell = row.insertCell(j);
+//         if (i === 0 && j > 0) {
+//             cell.textContent = boysRashi[j - 1];
+//         } else if (i > 0 && j === 0) {
+//             cell.textContent = girlsRashi[i - 1];
+//         } else if (i > 0 && j > 0) {
+//             cell.textContent = tableData[i][j];
+//         }
+//     }
+// }
 
-// Add table to the body
-document.body.appendChild(table);
+// document.body.appendChild(table);
 
-// Function to display value on button click
 function displayValue() {
-    const girlsRashiInput = document.getElementById('girlsRashiInput').value;
-    const boysRashiInput = document.getElementById('boysRashiInput').value;
+    const girlsRashiInput = document.getElementById('bname').value;
+    const boysRashiInput = document.getElementById('gname').value;
 
     const rowIndex = girlsRashi ? girlsRashi.indexOf(girlsRashiInput) + 1 : 0;
     const columnIndex = boysRashi ? boysRashi.indexOf(boysRashiInput) + 1 : 0;
 
     if (rowIndex > 0 && columnIndex > 0) {
-        const cellValue = table.rows[rowIndex].cells[columnIndex].textContent;
-        document.getElementById('displayedValue').textContent = `Selected value: ${cellValue}`;
+        const cellValue = tableData[rowIndex][columnIndex];
+        console.log(`Selected value: ${cellValue}`);
     } else {
-        document.getElementById('displayedValue').textContent = "Invalid input. Please enter valid Rashi values.";
+        console.log("Invalid input. Please enter valid Rashi values.");
     }
 }

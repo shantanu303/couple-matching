@@ -133,6 +133,7 @@ function getNakshatra(firstCharacter) {
         case "bhi":
         case "bha":
         case "bh":
+        case "b":
             return "moola";
         case "bu":
         case "bhu":
@@ -202,12 +203,12 @@ function submittwo() {
 
     var boyNakshatra6 = "";
     var girlNakshatra6 = "";
-    
+
     for (var i = 1; i <= Math.min(4, Math.max(boynamesix.length, girlnamesix.length)); i++) {
 
         var bSubstring = boynamesix.substring(0, i);
         var gSubstring = girlnamesix.substring(0, i);
-        
+
 
         var currentBoyNakshatrasix = getNakshatra(bSubstring);
         var currentGirlNakshatrasix = getNakshatra(gSubstring);

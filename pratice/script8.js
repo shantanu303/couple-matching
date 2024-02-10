@@ -133,6 +133,7 @@ function getNakshatra8(firstCharacter) {
         case "bhi":
         case "bha":
         case "bh":
+        case "b":
             return "moola";
         case "bu":
         case "bhu":
@@ -200,15 +201,15 @@ function submitthree() {
     var boyName = document.getElementById("bname").value.toLowerCase();
     var girlName = document.getElementById("gname").value.toLowerCase();
 
-    
+
     var boyNakshatra8 = "";
     var girlNakshatra8 = "";
-    
+
     for (var i = 1; i <= Math.min(4, Math.max(boyName.length, girlName.length)); i++) {
 
         var bSubstring = boyName.substring(0, i);
         var gSubstring = girlName.substring(0, i);
-        
+
         var currentBoyNakshatra = getNakshatra8(bSubstring);
         var currentGirlNakshatra = getNakshatra8(gSubstring);
 
@@ -290,6 +291,7 @@ function submitSecondJs(boyNakshatra8, girlNakshatra8) {
 
 function submit() {
     submitone();
+    submitfour();
     submittwo();
     submitthree();
 }
